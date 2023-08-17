@@ -7,7 +7,7 @@ html, body {
 }
 
 body {
-    background-image: url('background.jpg');  /* 이미지 경로를 꼭 확인하세요 */
+    background-image: url('/images/background.jpg');  /* 이미지 경로를 꼭 확인하세요 */
     background-size: 100% auto;
 }
 
@@ -31,7 +31,7 @@ body {
 #circle {
     width: 20px;
     height: 20px;
-    background-image: url('gamza.jpg'); /* Circle 이미지 경로 */
+    background-image: url('/images/gamza.jpg'); /* Circle 이미지 경로 */
     background-size: cover;
     position: absolute;
     top: 5px;
@@ -50,7 +50,7 @@ body {
     text-align: center;
     line-height: 100px;
     display: inline-block;
-    background-image: url('potato.png'); 
+    background-image: url('/images/potato.png'); 
     background-size: cover;
     color: white;  
     text-shadow: 2px 2px 4px black; 
