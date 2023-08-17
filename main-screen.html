@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IO Game</title>
+    <style>
+        #bar {
+            width: 300px;
+            height: 30px;
+            border: 2px solid black;
+            position: relative;
+            margin: 50px;
+            background-color: #e0e0e0;
+        }
+        #targetZone {
+            width: 50px;
+            height: 30px;
+            background-color: green;
+            position: absolute;
+            left: 125px;
+        }
+        #circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-image: url('potato.png'); /* Circle 이미지 경로 */
+            background-size: cover;
+            position: absolute;
+            top: 5px;
+        }
+        #mainCircle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: red;
+            margin: 50px;
+            cursor: pointer;
+        }
+        #gameResult {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+        #resultImage {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="mainCircle">Click to Start Game</div>
+
+    <div id="gameScreen" style="display: none;">
+        <div id="bar">
+            <div id="targetZone"></div>
+            <div id="circle"></div>
+        </div>
+        <div id="gameResult">
+            <img id="resultImage" src="" alt="Game Result">
+            <p id="resultText"></p>
+            <button id="backToMain">메인으로 돌아가기</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
