@@ -5,7 +5,7 @@ const gameResult = document.getElementById('gameResult');
 const resultImage = document.getElementById('resultImage');
 const resultText = document.getElementById('resultText');
 
-let direction = 1; // 1: 오른쪽, -1: 왼쪽
+let direction = 1;  // 1: 오른쪽, -1: 왼쪽
 let interval;
 let circlePosition = 0;
 
@@ -14,39 +14,38 @@ function moveCircle(speed) {
 
     if (circlePosition > (bar.offsetWidth - circle.offsetWidth)) {
         circlePosition = bar.offsetWidth - circle.offsetWidth;
-        direction *= -1; 
+        direction *= -1;
     } else if (circlePosition < 0) {
         circlePosition = 0;
-        direction *= -1; 
+        direction *= -1;
     }
 
     circle.style.left = circlePosition + 'px';
 }
 
-function checkGameResult() {
+function checkGameResult(failMessage) {
     const circleRight = circlePosition + circle.offsetWidth;
     const targetLeft = targetZone.offsetLeft;
     const targetRight = targetLeft + targetZone.offsetWidth;
 
-    clearInterval(interval); // 게임 중지
+    clearInterval(interval);  // 게임 중지
 
-    gameResult.style.display = 'block'; // 결과 화면 표시 <- 올바른 위치로 옮깁니다.
+    gameResult.style.display = 'block';  // 결과 화면 표시
 
     if (circlePosition < targetRight && circleRight > targetLeft) {
-        resultImage.src = 'memory.png'; // 성공 이미지의 경로
+        resultImage.src = 'memory.png';  // 성공 이미지의 경로
         resultText.innerText = '게임 클리어!';
         return 'success';  // 성공을 나타내는 문자열 반환
     } else {
-        resultImage.src = 'error.png'; // 실패 이미지의 경로
-        resultText.innerText = '게임 실패!';
+        resultImage.src = 'error.png';  // 실패 이미지의 경로
+        resultText.innerText = failMessage;  // 실패 메시지로 변경
         return 'fail';  // 실패를 나타내는 문자열 반환
     }
 }
 
-
 function setTargetSize(size) {
     targetZone.style.width = size + 'px';
-    targetZone.style.left = (bar.offsetWidth - size) / 2 + 'px'; // 중앙에 위치시킴
+    targetZone.style.left = (bar.offsetWidth - size) / 2 + 'px';  // 중앙에 위치시킴
 }
 
 function startGame(speed, targetSize) {
@@ -56,28 +55,28 @@ function startGame(speed, targetSize) {
     interval = setInterval(() => moveCircle(speed), 50);
 }
 
+document.querySelectorAll('.gameCircle').forEach(gameCircle => {
+    gameCircle.addEventListener('click', function() {
+        const speed = parseInt(gameCircle.getAttribute('data-speed'));
+        const targetSize = parseInt(gameCircle.getAttribute('data-targetSize'));
+        const failMessage = gameCircle.getAttribute('data-failMessage');
 
-document.getElementById('mainCircle').addEventListener('click', function() {
-    document.getElementById('mainCircle').style.display = 'none';
-    document.getElementById('gameScreen').style.display = 'block';
-    startGame(gameSpeed, targetSize);
+        document.getElementById('gameChoices').style.display = 'none';
+        document.getElementById('gameScreen').style.display = 'block';
+        startGame(speed, targetSize);
+
+        document.body.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                checkGameResult(failMessage);
+            }
+        });
+    });
 });
 
 document.getElementById('backToMain').addEventListener('click', function() {
     document.getElementById('gameScreen').style.display = 'none';
-    document.getElementById('mainCircle').style.display = 'block';
-    gameResult.style.display = 'none'; // 게임 결과 화면을 숨깁니다.
+    document.getElementById('gameChoices').style.display = 'block';
+    gameResult.style.display = 'none';  // 게임 결과 화면을 숨깁니다
     circlePosition = 0;
     circle.style.left = circlePosition + 'px';
 });
-
-
-document.body.addEventListener('keydown', (e) => {
-    if (e.code === 'Space') {
-        checkGameResult();
-    }
-});
-
-// 게임 시작 속도와 특정 영역의 크기를 설정
-const gameSpeed = 10; // 동그라미의 이동 속도
-const targetSize = 60; // 특정 영역의 크기
