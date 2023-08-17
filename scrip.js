@@ -30,18 +30,19 @@ function checkGameResult() {
 
     clearInterval(interval); // 게임 중지
 
+    gameResult.style.display = 'block'; // 결과 화면 표시 <- 올바른 위치로 옮깁니다.
+
     if (circlePosition < targetRight && circleRight > targetLeft) {
         resultImage.src = 'memory.png'; // 성공 이미지의 경로
         resultText.innerText = '게임 클리어!';
-        return 'success'
+        return 'success';  // 성공을 나타내는 문자열 반환
     } else {
         resultImage.src = 'error.png'; // 실패 이미지의 경로
         resultText.innerText = '게임 실패!';
-        return 'fail';
+        return 'fail';  // 실패를 나타내는 문자열 반환
     }
-
-    gameResult.style.display = 'block'; // 결과 화면 표시
 }
+
 
 function setTargetSize(size) {
     targetZone.style.width = size + 'px';
@@ -65,9 +66,11 @@ document.getElementById('mainCircle').addEventListener('click', function() {
 document.getElementById('backToMain').addEventListener('click', function() {
     document.getElementById('gameScreen').style.display = 'none';
     document.getElementById('mainCircle').style.display = 'block';
+    gameResult.style.display = 'none'; // 게임 결과 화면을 숨깁니다.
     circlePosition = 0;
     circle.style.left = circlePosition + 'px';
 });
+
 
 document.body.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
