@@ -9,11 +9,10 @@ window.onload = function() {
 
             // Open a new window for the mini-game.
             const miniGameWindow = window.open('mini-game.html', '_blank', 'width=800,height=600');
-            miniGameWindow.focus(); // 새 창에 포커스 주기
             
             miniGameWindow.onload = function() {
                 // Set up the mini game using the parameters from the main game
-                miniGameWindow.startGame(speed, targetSize, failMessage);
+                miniGameWindow.startGame(speed, targetSize);
             };
         });
 
@@ -24,3 +23,12 @@ window.onload = function() {
         gameCircle.style.left = randomLeft + 'px';
     });
 }
+
+document.body.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+        gameCircles.forEach(gameCircle => {
+            const failMessage = gameCircle.getAttribute('data-failMessage');
+            checkGameResult(failMessage);
+        });
+    }
+});
