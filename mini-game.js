@@ -23,15 +23,22 @@ function moveCircle(speed) {
     circle.style.left = circlePosition + 'px';
 }
 
-function checkGameResult() {
+function checkGameResult(failMessage) {
+    const circleRight = circlePosition + circle.offsetWidth;
+    const targetLeft = targetZone.offsetLeft;
+    const targetRight = targetLeft + targetZone.offsetWidth;
+
+    clearInterval(interval);  // 게임 중지
+
+    gameResult.style.display = 'block';  // 결과 화면 표시
 
     if (circlePosition < targetRight && circleRight > targetLeft) {
-        resultImage.src = 'memory.png';
+        resultImage.src = '/images/memory.png';
         resultText.innerText = '게임 클리어!';
         return 'success';
     } else {
-        resultImage.src = 'error.png';
-        resultText.innerText = currentFailMessage;
+        resultImage.src = '/images/error.png';
+        resultText.innerText = failMessage;
         return 'fail';
     }
 }
@@ -41,20 +48,17 @@ function setTargetSize(size) {
     targetZone.style.left = (bar.offsetWidth - size) / 2 + 'px';  // 중앙에 위치시킴
 }
 
-function startGame(speed, targetSize, failMessage) { 
-    currentFailMessage = failMessage;
+function startGame(speed, targetSize) {
     setTargetSize(targetSize);
     circlePosition = 0;
     circle.style.left = circlePosition + 'px';
     interval = setInterval(() => moveCircle(speed), 50);
 }
-
-window.addEventListener('keydown', (e) => {
+document.body.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
-        checkGameResult();
+        checkGameResult("게임 종료!");
     }
 });
-
 document.getElementById('backToMain').addEventListener('click', function() {
     window.close();
 });
