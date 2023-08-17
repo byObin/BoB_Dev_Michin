@@ -14,7 +14,7 @@ window.onload = function() {
             
             miniGameWindow.onload = function() {
                 // Set up the mini game using the parameters from the main game
-                miniGameWindow.startGame(speed, targetSize);
+                miniGameWindow.startGame(speed, targetSize, failMessage);
             };
         });
 

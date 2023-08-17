@@ -8,6 +8,7 @@ const resultText = document.getElementById('resultText');
 let direction = 1;  // 1: 오른쪽, -1: 왼쪽
 let interval;
 let circlePosition = 0;
+let currentFailMessage;
 
 function moveCircle(speed) {
     circlePosition += (speed * direction);
@@ -38,6 +39,8 @@ function checkGameResult(failMessage) {
         const valueToSend = 1;
          // 부모 창의 함수를 호출하여 상수 값 전달
         window.opener.receiveConstantFromChild(valueToSend);
+
+        resultText.innerText = '물리 메모리 획득!';
         return 'success';
     } else {
         resultImage.src = '/images/error.png';
@@ -53,15 +56,17 @@ function setTargetSize(size) {
     targetZone.style.left = (bar.offsetWidth - size) / 2 + 'px';  // 중앙에 위치시킴
 }
 
-function startGame(speed, targetSize) {
+function startGame(speed, targetSize, failMessage) {
     setTargetSize(targetSize);
     circlePosition = 0;
     circle.style.left = circlePosition + 'px';
     interval = setInterval(() => moveCircle(speed), 50);
+    currentFailMessage = failMessage; // 실패 메시지를 저장합니다.
 }
+
 document.body.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
-        checkGameResult("게임 종료!");
+        checkGameResult(currentFailMessage); // 저장된 failMessage를 사용합니다.
     }
 });
 document.getElementById('backToMain').addEventListener('click', function() {
