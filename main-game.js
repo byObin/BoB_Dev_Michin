@@ -42,6 +42,10 @@ function receiveConstantFromChild(valueToSend) {
     if(valueToSend == 1){
         mul+=1;
         document.getElementById("mul_output").innerText = mul;
+        
+        var imageElement = document.getElementById("michin");
+        imageElement.src = imageSources[mul-1];
+        
         if (mul === 5) {
             // 변수 값이 5일 때 특정 HTML 페이지 호출
             window.location.href = 'end_success.html';
@@ -57,4 +61,21 @@ function receiveConstantFromChild(valueToSend) {
     }
   }
 
- 
+  var imageIndex = 0; // 이미지 인덱스 변수
+
+  var imageSources = [
+    "/images/감자_1.png",
+    "/images/감자_2.png",
+    "/images/감자_3.png",
+    "/images/감자_4.png",
+    "/images/감자_5.png",
+  ]; // 이미지 경로 배열
+  
+function changeImage() {
+    var imageElement = document.getElementById("michin");
+    
+    // 이미지 인덱스 업데이트
+    // imageIndex = (imageIndex + 1) % imageSources.length;
+    // 이미지 소스 변경
+    imageElement.src = imageSources[mul-1];
+  } 
