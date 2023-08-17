@@ -19,6 +19,7 @@
         </div>
     </div>
 
-    <script src="mini-game.js"></script>
+    <script src="mini-game.js">// 부모 창의 함수를 호출하여 값 전달
+    window.opener.receiveChildValue(valueToSend);</script>
 </body>
 </html>
