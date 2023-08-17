@@ -31,7 +31,7 @@ body {
 #circle {
     width: 20px;
     height: 20px;
-    background-image: url('/images/gamza.jpg'); /* Circle 이미지 경로 */
+    background-image: url('/images/gamza.png'); /* Circle 이미지 경로 */
     background-size: cover;
     position: absolute;
     top: 5px;
