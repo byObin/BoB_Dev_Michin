@@ -1,3 +1,5 @@
+var mul = 0;
+var err = 0;
 window.onload = function() {
     let gameCircles = document.querySelectorAll('.gameCircle');
 
@@ -54,7 +56,7 @@ function receiveConstantFromChild(valueToSend) {
         }
     }
     else if(valueToSend == -1){
-        err+=1;
+        err+=1; 
         document.getElementById("err_output").innerText = err;
         if (err === 5) {
             // 변수 값이 5일 때 특정 HTML 페이지 호출
