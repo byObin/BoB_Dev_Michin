@@ -33,9 +33,11 @@ function checkGameResult() {
     if (circlePosition < targetRight && circleRight > targetLeft) {
         resultImage.src = 'memory.png'; // 성공 이미지의 경로
         resultText.innerText = '게임 클리어!';
+        return 'success'
     } else {
         resultImage.src = 'error.png'; // 실패 이미지의 경로
         resultText.innerText = '게임 실패!';
+        return 'fail';
     }
 
     gameResult.style.display = 'block'; // 결과 화면 표시
