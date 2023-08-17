@@ -3,30 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>IO Game</title>
+    <title>Mini Game</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="gameChoices">
-        <div class="gameCircle" data-speed="10" data-targetSize="60" data-failMessage="Failed to start Docker Application Container">Docker 과제</div>
-        <div class="gameCircle" data-speed="15" data-targetSize="40" data-failMessage="Unable to find image 'docker/getting-started:latest' locally">Docker2 과제</div>
-        <div class="gameCircle" data-speed="30" data-targetSize="50" data-failMessage="no such file or directory">네트워크 과제</div>
-        <div class="gameCircle" data-speed="25" data-targetSize="10" data-failMessage="Unable to locate package mariadb-server">Docker 과제</div>
-        <div class="gameCircle" data-speed="20" data-targetSize="30" data-failMessage="응용 프로그램을 제대로 시작하지 못했습니다.(0xc000142).응용 프로그램을 닫으려면 [확인]을 클릭하십시오.">네트워크 보안 과제</div>
-        <div class="gameCircle" data-speed="30" data-targetSize="30" data-failMessage="command not found">공개키 암호 알고리즘 2 과제</div>
-        <div class="gameCircle" data-speed="45" data-targetSize="50" data-failMessage="There is no Internet connection">네트워크 CTF</div>
-        <div class="gameCircle" data-speed="200" data-targetSize="10" data-failMessage="Invalid username or password. Unauthorized.">splunk 데이터 분석 시스템 개발</div>
-        <div class="gameCircle" data-speed="20" data-targetSize="15" data-failMessage="qt failed to connect to server. check your network connection and try again.">QT와 친해지기/div>
-        <div class="gameCircle" data-speed="7" data-targetSize="20" data-failMessage="account_inactive : Authentication token is for a deleted user or workspace when using a bot token">챗봇</div>
-        <div class="gameCircle" data-speed="25" data-targetSize="60" data-failMessage="unable to load Private Key">RSA</div>
-        <div class="gameCircle" data-speed="15" data-targetSize="40" data-failMessage="‘File Allocation Table’을 찾을 수 없습니다.">FAT32 과제</div>
-        <div class="gameCircle" data-speed="30" data-targetSize="50" data-failMessage="Network error: Connection Refused">네트워크 보안</div>
-        <div class="gameCircle" data-speed="25" data-targetSize="10" data-failMessage="E: You don't have enough free space in /var/cache/apt/archives/">네트워크</div>
-        <div class="gameCircle" data-speed="13" data-targetSize="30" data-failMessage="응용 프로그램을 제대로 시작하지 못했습니다.(0xc000142).응용 프로그램을 닫으려면 [확인]을 클릭하십시오.">공개키 암호 알고리즘</div>
-        <div class="gameCircle" data-speed="34" data-targetSize="30" data-failMessage=" openssl: error while loading shared libraries: libssl.so.1.1:">공개키 암호 알고리즘 2 과제</div>
-        <div class="gameCircle" data-speed="21" data-targetSize="50" data-failMessage="빌드 결과 모든 파일의 크기가 똑같다.">개발툴 다루기</div>
+    <div id="gameScreen">
+        <div id="bar">
+            <div id="targetZone"></div>
+            <div id="circle"></div>
+        </div>
+        <div id="gameResult">
+            <img id="resultImage" src="" alt="Game Result">
+            <p id="resultText"></p>
+            <button id="backToMain">메인으로 돌아가기</button>
+        </div>
     </div>
-    <script src="main-game.js"></script>
-    <script src="soil.js"></script>
+
+    <script src="mini-game.js"></script>
 </body>
 </html>
