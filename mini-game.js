@@ -35,10 +35,15 @@ function checkGameResult(failMessage) {
     if (circlePosition < targetRight && circleRight > targetLeft) {
         resultImage.src = '/images/memory.png';
         resultText.innerText = '게임 클리어!';
+        const valueToSend = 1;
+         // 부모 창의 함수를 호출하여 상수 값 전달
+        window.opener.receiveConstantFromChild(valueToSend);
         return 'success';
     } else {
         resultImage.src = '/images/error.png';
         resultText.innerText = failMessage;
+        const valueToSend = -1;
+        window.opener.receiveConstantFromChild(valueToSend);
         return 'fail';
     }
 }

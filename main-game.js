@@ -1,3 +1,5 @@
+var mul = 0;
+var err = 0;
 window.onload = function() {
     let gameCircles = document.querySelectorAll('.gameCircle');
 
@@ -32,3 +34,27 @@ document.body.addEventListener('keydown', (e) => {
         });
     }
 });
+
+function receiveConstantFromChild(valueToSend) {
+    console.log("받은 상수 값: " + valueToSend);
+    // 변수 값을 가져와서 HTML 요소에 삽입
+    document.getElementById("output").innerText = valueToSend;
+    if(valueToSend == 1){
+        mul+=1;
+        document.getElementById("mul_output").innerText = mul;
+        if (mul === 5) {
+            // 변수 값이 5일 때 특정 HTML 페이지 호출
+            window.location.href = 'end_success.html';
+        }
+    }
+    else if(valueToSend == -1){
+        err+=1;
+        document.getElementById("err_output").innerText = err;
+        if (err === 5) {
+            // 변수 값이 5일 때 특정 HTML 페이지 호출
+            window.location.href = 'end_fail.html';
+        }
+    }
+  }
+
+ 
