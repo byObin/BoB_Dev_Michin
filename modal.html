@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Modal Example</title>
+    <style>
+      /* 모달창 스타일 */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 35%;
+      }
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .close:hover,
+      .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .input-label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      .input-checkbox {
+        margin-right: 5px;
+      }
+      .result {
+        margin-top: 10px;
+        text-align: center;
+      }
+      .disabled-button {
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+      #evolutionBtn {
+        display: block;
+        margin: 0 auto;
+     }
+
+    </style>
+  </head>
+  <body>
+    <button id="openModalBtn">모달 열기</button>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>과제 현황</h2>
+        <!-- 성공 체크박스 -->
+	<label for="success">성공</label>
+	<div>
+		<input type="checkbox" id="success1" name="success" value="1">
+		<label for="success1">1</label>
+		<input type="checkbox" id="success2" name="success" value="2">
+		<label for="success2">2</label>
+		<input type="checkbox" id="success3" name="success" value="3">
+		<label for="success3">3</label>
+		<input type="checkbox" id="success4" name="success" value="4">
+		<label for="success4">4</label>
+		<input type="checkbox" id="success5" name="success" value="5">
+		<label for="success5">5</label>
+	</div>
+	<br>
+	
+	<!-- 실패 체크박스 -->
+	<label for="fail">실패</label>
+	<div>
+		<input type="checkbox" id="fail1" name="failure" value="1">
+		<label for="fail1">1</label>
+		<input type="checkbox" id="fail2" name="failure" value="2">
+		<label for="fail2">2</label>
+		<input type="checkbox" id="fail3" name="failure" value="3">
+		<label for="fail3">3</label>
+		<input type="checkbox" id="fail4" name="failure" value="4">
+		<label for="fail4">4</label>
+		<input type="checkbox" id="fail5" name="failure" value="5">
+		<label for="fail5">5</label>
+	</div>
+        <div class="result">
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzA3MTlfMjMx%2FMDAxNjg5NzU1NDk0MjYw.2cDlAND3zyYxgsxtAbMrGPCg22iMqm5bLwMw0cSIWTIg.-B6Y3AfZRBpyvMKGfNOWu4o2E2f6_vb_qgB0SE2afMgg.JPEG.qkathddl456%2F%25B0%25A8%25C0%25DA_%25C8%25BF%25B4%25C9003.jpg&type=a340" alt="이미지 설명">
+        </div>
+        <button id="evolutionBtn" class="disabled-button">진화</button>
+      </div>
+    </div>
+    <script>
+      var modal = document.getElementById("myModal");
+      var btn = document.getElementById("openModalBtn");
+      var successBoxes = document.querySelectorAll("input[name=success]");
+      var failureBoxes = document.querySelectorAll("input[name=failure]");
+      var checkedSuccessBoxes = [];
+      var checkedFailureBoxes = [];
+      var span = document.getElementsByClassName("close")[0];
+      var evolutionBtn = document.getElementById("evolutionBtn");
+
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      window.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      // 성공 체크박스 체크 시 checkedSuccessBoxes 배열에 담기
+      Array.prototype.forEach.call(successBoxes, function (input) {
+        input.addEventListener("change", function (e) {
+          var idx = checkedSuccessBoxes.indexOf(e.target.value);
+          if (e.target.checked && idx === -1) {
+            checkedSuccessBoxes.push(e.target.value);
+            checkSuccess();
+          } else if (!e.target.checked && idx !== -1) {
+            checkedSuccessBoxes.splice(idx, 1);
+            checkSuccess();
+          }
+        });
+      });
+
+      // 실패 체크박스 체크 시 checkedFailureBoxes 배열에 담기
+      Array.prototype.forEach.call(failureBoxes, function (input) {
+        input.addEventListener("change", function (e) {
+          var idx = checkedFailureBoxes.indexOf(e.target.value);
+          if (e.target.checked && idx === -1) {
+            checkedFailureBoxes.push(e.target.value);
+            checkFailure();
+          } else if (!e.target.checked && idx !== -1) {
+            checkedFailureBoxes.splice(idx, 1);
+            checkFailure();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

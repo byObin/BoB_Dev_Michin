@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game And Assignment Status</title>
+    <style>
+        #status {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 1px solid #888;
+  padding: 10px;
+  background-color: #fefefe;
+  width: 550px; /* 원하는 너비로 조절하세요. */
+}
+
+/* 각 이미지의 크기를 조절하고 레이아웃을 세로 방향으로 변경합니다. */
+.success-img,
+.fail-img {
+  display: inline-block;
+  width: 50%;
+  height: 10%;
+  margin-right: 5px;
+}
+
+      /* #status {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        border: 1px solid #888;
+        padding: 20px;
+        background-color: #fefefe;
+      } */
+
+      #bar {
+        width: 300px;
+        height: 30px;
+        border: 2px solid black;
+        position: relative;
+        margin: 50px;
+        background-color: #e0e0e0;
+      }
+
+      #targetZone {
+        width: 50px;
+        height: 30px;
+        background-color: green;
+        position: absolute;
+        left: 125px;
+      }
+
+      #circle {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-image: url("potato.png");
+        background-size: cover;
+        position: absolute;
+        top: 5px;
+      }
+
+      #mainCircle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: red;
+        margin: 50px;
+        cursor: pointer;
+      }
+
+      #gameResult {
+        display: none;
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      #resultImage {
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="status">
+      <h2>과제 현황</h2>
+      <label for="success">성공</label>
+      <!-- 성공 -->
+<div>
+    <img src="Gray-scale-Memory.png" alt="Success1" id="success1" width="20%" />
+    <img src="Gray-scale-Memory.png" alt="Success2" id="success2" width="20%" />
+    <img src="Gray-scale-Memory.png" alt="Success3" id="success3" width="20%" />
+    <img src="Gray-scale-Memory.png" alt="Success4" id="success4" width="20%" />
+    <img src="Gray-scale-Memory.png" alt="Success5" id="success5" width="20%" />
+  </div>
+      <br />
+      <label for="fail">실패</label>
+      <div>
+        <img src="Gray-scale-error.png" alt="Error1" id="Error1" width="20%" />
+        <img src="Gray-scale-error.png" alt="Error2" id="Error2" width="20%" />
+        <img src="Gray-scale-error.png" alt="Error3" id="Error3" width="20%" />
+        <img src="Gray-scale-error.png" alt="Error4" id="Error4" width="20%" />
+        <img src="Gray-scale-error.png" alt="Error5" id="Error5" width="20%" />        
+      </div>
+      <img src="Gray-scale-error.png" alt="result" id="result" width="30%" />
+    <button id="evolutionBtn" class="disabled-button" disabled>진화</button>
+  </div>
+    </div>
+
+    <div id="mainCircle">Click to Start Game</div>
+
+    <div id="gameScreen" style="display: none">
+      <div id="bar">
+        <div id="targetZone"></div>
+        <div id="circle"></div>
+      </div>
+      <div id="gameResult">
+        <img id="resultImage" src="" alt="Game Result" />
+        <p id="resultText"></p>
+        <button id="backToMain">메인으로 돌아가기</button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

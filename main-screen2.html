@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IO Game</title>
+    <style>
+        
+        html, body {
+            width: 1324px;
+            height: 768px;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        body {
+            background-image: url('background.jpg');  /* 이미지 경로를 꼭 확인하세요 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        #status {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px;
+            width: 250px; /* 원하는 너비로 조절하세요. */
+            height: 120px;
+            background-color: #fefefe;
+        }
+
+        #bar {
+            width: 300px;
+            height: 30px;
+            border: 2px solid black;
+            position: relative;
+            margin: 50px;
+            background-color: #e0e0e0;
+        }
+        #targetZone {
+            width: 50px;
+            height: 30px;
+            background-color: green;
+            position: absolute;
+            left: 125px;
+        }
+        #circle {
+            width: 20px;
+            height: 20px;
+            background-image: url('gamza.jpg'); /* Circle 이미지 경로 */
+            background-size: cover;
+            position: absolute;
+            top: 5px;
+        }
+        #gameChoices {
+            text-align: center;  /* 중앙 정렬 */
+            margin: 50px;
+        }
+        .gameCircle {
+            width: 50px;
+            height: 50px;
+            margin: 20px;
+            cursor: pointer;
+            text-align: center;
+            line-height: 100px;
+            display: inline-block;
+            background-image: url('potato.png'); 
+            background-size: cover;
+            color: white;  
+            text-shadow: 2px 2px 4px black; 
+            position: absolute;
+        }
+
+        .gameCircle:nth-child(1) {
+            top : 280px;
+            left : 10px;
+            transform: rotate(10deg);
+            }
+
+        .gameCircle:nth-child(2) {
+            top : 230px;
+            left : 100px;
+            transform: rotate(20deg);
+        }
+
+        .gameCircle:nth-child(3) {
+            top : 300px;
+            left : 210px;
+            transform: rotate(30deg);
+        }
+
+        .gameCircle:nth-child(4) {
+            top : 500px;
+            left : 350px;
+            transform: rotate(40deg);
+        }
+
+        .gameCircle:nth-child(5) {
+            top : 230px;
+            left : 400px;
+            transform: rotate(50deg);
+        }
+
+        .gameCircle:nth-child(6) {
+            top : 400px;
+            left : 100px;
+            transform: rotate(60deg);
+        }
+
+        .gameCircle:nth-child(7) {
+            top : 480px;
+            left : 200px;
+            transform: rotate(70deg);
+        }
+
+        .gameCircle:nth-child(8) {
+            top : 350px;
+            left : 350px;
+            transform: rotate(80deg);
+        }
+
+        .gameCircle:nth-child(9) {
+            top : 480px;
+            left : 0px;
+            transform: rotate(90deg);
+        }
+
+        .gameCircle:nth-child(10) {
+            top : 400px;
+            left : 450px;
+            transform: rotate(100deg);
+        }
+
+
+        #gameResult {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #resultImage {
+            width: 50px;
+            height: 50px;
+        }
+
+        #evolution {
+            position: fixed;
+            bottom: 0; /* 하단에 붙이기 */
+            right: 0; /* 오른쪽에 붙이기 */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        #evolution img {
+            width: 30%;
+            height: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="status">
+        <h3>과제 현황</h3>
+        <label for="success">성공</label>
+        <!-- 성공 -->
+        <div>
+            <img src="Gray-scale-Memory.png" alt="Success1" id="success1" width="17%" />
+            <img src="Gray-scale-Memory.png" alt="Success2" id="success2" width="17%" />
+            <img src="Gray-scale-Memory.png" alt="Success3" id="success3" width="17%" />
+            <img src="Gray-scale-Memory.png" alt="Success4" id="success4" width="17%" />
+            <img src="Gray-scale-Memory.png" alt="Success5" id="success5" width="17%" />
+        </div>
+        <br />
+        <label for="fail">실패</label>
+        <div>
+          <img src="Gray-scale-error.png" alt="Error1" id="Error1" width="17%" />
+          <img src="Gray-scale-error.png" alt="Error2" id="Error2" width="17%" />
+          <img src="Gray-scale-error.png" alt="Error3" id="Error3" width="17%" />
+          <img src="Gray-scale-error.png" alt="Error4" id="Error4" width="17%" />
+          <img src="Gray-scale-error.png" alt="Error5" id="Error5" width="1%" />        
+        </div>
+    </div>
+      </div>
+    <!--div id="mainCircle">Click to Start Game</div-->
+    <div id="gameChoices">
+        <div class="gameCircle" data-speed="10" data-targetSize="60" data-failMessage="1번 게임 실패!">1번 게임</div>
+        <div class="gameCircle" data-speed="15" data-targetSize="40" data-failMessage="2번 게임 실패!">2번 게임</div>
+        <div class="gameCircle" data-speed="30" data-targetSize="50" data-failMessage="3번 게임 실패!">3번 게임</div>
+        <div class="gameCircle" data-speed="25" data-targetSize="10" data-failMessage="4번 게임 실패!">4번 게임</div>
+        <div class="gameCircle" data-speed="20" data-targetSize="30" data-failMessage="5번 게임 실패!">5번 게임</div>
+        <div class="gameCircle" data-speed="30" data-targetSize="30" data-failMessage="6번 게임 실패!">6번 게임</div>
+        <div class="gameCircle" data-speed="45" data-targetSize="50" data-failMessage="7번 게임 실패!">7번 게임</div>
+        <div class="gameCircle" data-speed="200" data-targetSize="10" data-failMessage="8번 게임 실패!">8번 게임</div>
+        <div class="gameCircle" data-speed="20" data-targetSize="15" data-failMessage="9번 게임 실패!">9번 게임</div>
+        <div class="gameCircle" data-speed="5" data-targetSize="20" data-failMessage="10번 게임 실패!">10번 게임</div>
+    </div>
+
+    <div id="gameScreen" style="display: none;">
+        <div id="bar">
+            <div id="targetZone"></div>
+            <div id="circle"></div>
+        </div>
+        <div id="gameResult">
+            <img id="resultImage" src="Memory.png" alt="Game Result">
+            <p id="resultText"></p>
+            <button id="backToMain">메인으로 돌아가기</button>
+        </div>
+    </div>
+
+    <div id="evolution">
+        <img src="Gray-scale-error.png" alt="result" id="result" width="30%" />
+      <button id="evolutionBtn" class="disabled-button" disabled>진화</button>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
