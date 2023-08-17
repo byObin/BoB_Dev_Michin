@@ -1,5 +1,3 @@
-var mul = 0;
-var err = 0;
 window.onload = function() {
     let gameCircles = document.querySelectorAll('.gameCircle');
 
@@ -11,11 +9,14 @@ window.onload = function() {
 
             // Open a new window for the mini-game.
             const miniGameWindow = window.open('mini-game.html', '_blank', 'width=800,height=600');
-            
+
             miniGameWindow.onload = function() {
                 // Set up the mini game using the parameters from the main game
                 miniGameWindow.startGame(speed, targetSize, failMessage);
             };
+
+            // Remove the clicked gameCircle from the DOM after launching the mini-game
+            gameCircle.remove();
         });
 
         let randomTop = (window.innerHeight * 0.35) + (Math.random() * (window.innerHeight * 0.55));
@@ -28,6 +29,7 @@ window.onload = function() {
 
 document.body.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
+        gameCircles = document.querySelectorAll('.gameCircle');  // Update gameCircles to get the current list after some might have been removed.
         gameCircles.forEach(gameCircle => {
             const failMessage = gameCircle.getAttribute('data-failMessage');
             checkGameResult(failMessage);
@@ -79,3 +81,4 @@ function changeImage() {
     // 이미지 소스 변경
     imageElement.src = imageSources[mul-1];
   } 
+

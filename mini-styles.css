@@ -11,8 +11,8 @@ body {  /* 이미지 경로를 꼭 확인하세요 */
 }
 
 #bar {
-    width: 500px;
-    height: 50px;
+    width: 700px;
+    height: 70px;
     border: 2px solid black;
     position: relative;
     margin: 50px;
@@ -20,21 +20,37 @@ body {  /* 이미지 경로를 꼭 확인하세요 */
 }
 
 #targetZone {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     background-color: green;
     position: absolute;
     left: 125px;
 }
 
 #circle {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     background-image: url('/images/gamza.png'); /* Circle 이미지 경로 */
     background-size: cover;
     position: absolute;
     top: 5px;
 }
+
+#backToMain {
+    padding: 15px 30px;  /* 상하 패딩 15px, 좌우 패딩 30px로 설정 */
+    font-size: 20px;  /* 글자 크기를 20px로 설정 */
+    border-radius: 5px;  /* 버튼의 모서리를 둥글게 */
+    border: none;  /* 테두리 제거 */
+    background-color: #3498db;  /* 버튼 배경색 */
+    color: white;  /* 글자색 */
+    cursor: pointer;  /* 마우스를 올렸을 때 손가락 모양으로 */
+    transition: background-color 0.3s;  /* 배경색 변경시 트랜지션 효과 */
+}
+
+#backToMain:hover {
+    background-color: #2980b9;  /* 마우스 오버시 버튼 배경색 */
+}
+
 
 #gameChoices {
     text-align: center;  /* 중앙 정렬 */
@@ -71,6 +87,10 @@ body {  /* 이미지 경로를 꼭 확인하세요 */
 }
 
 #resultImage {
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 200px;
+}
+
+#resultText {
+    font-size: 24px;   /* 원하는 폰트 크기로 설정 */
 }
