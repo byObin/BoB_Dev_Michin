@@ -6,35 +6,36 @@
   
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #3f3e3e;
+  background-color: #8d8d8d;
   display: flex;
   justify-content: center;
   align-items: center;
 }
   
-
-  
-h1 {
-    font-size: 100px;
-    text-align: center;
-    background-image: linear-gradient(to right, blue, skyblue);    color: transparent;
-    -webkit-background-clip: text;
-}
-  
-h2 {
-  font-size: 60px;
-  background-image: linear-gradient(to right, rgb(255, 4, 180), rgb(255, 171, 4));    color: transparent;
-  -webkit-background-clip: text;
-}
-
 .title {
   width: auto;
   height: 100px;
   font-family: 'Diphylleia', serif;
 }
 
+
+  
+h1 {
+    font-size: 60px;
+    text-align: center;
+    background-image: linear-gradient(to right, blue, skyblue);    color: transparent;
+    -webkit-background-clip: text;
+}
+  
+h2 {
+  font-size: 30px;
+  background-image: linear-gradient(to right, rgb(0, 0, 0), rgb(0, 0, 0));    color: transparent;
+  -webkit-background-clip: text;
+}
+
+
 #start-btn {
   font-size: 60px;
-  padding: 10px 30px;
+  padding: 20px 10px 30px 20px;
 
 }
