@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const numImages = 400; // 생성할 이미지 개수
-    const images = ["soil.png"]; // 이미지 파일 목록
+    const images = ["/images/soil.png"]; // 이미지 파일 목록
     const body = document.body;
   
     function getRandomPosition() {
