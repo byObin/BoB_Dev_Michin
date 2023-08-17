@@ -1,5 +1,3 @@
-var mul = 0;
-var err = 0;
 window.onload = function() {
     let gameCircles = document.querySelectorAll('.gameCircle');
 
@@ -11,11 +9,14 @@ window.onload = function() {
 
             // Open a new window for the mini-game.
             const miniGameWindow = window.open('mini-game.html', '_blank', 'width=800,height=600');
-            
+
             miniGameWindow.onload = function() {
                 // Set up the mini game using the parameters from the main game
                 miniGameWindow.startGame(speed, targetSize, failMessage);
             };
+
+            // Remove the clicked gameCircle from the DOM after launching the mini-game
+            gameCircle.remove();
         });
 
         let randomTop = (window.innerHeight * 0.35) + (Math.random() * (window.innerHeight * 0.55));
@@ -28,6 +29,7 @@ window.onload = function() {
 
 document.body.addEventListener('keydown', (e) => {
     if (e.code === 'Space') {
+        gameCircles = document.querySelectorAll('.gameCircle');  // Update gameCircles to get the current list after some might have been removed.
         gameCircles.forEach(gameCircle => {
             const failMessage = gameCircle.getAttribute('data-failMessage');
             checkGameResult(failMessage);
@@ -35,26 +37,3 @@ document.body.addEventListener('keydown', (e) => {
     }
 });
 
-function receiveConstantFromChild(valueToSend) {
-    console.log("받은 상수 값: " + valueToSend);
-    // 변수 값을 가져와서 HTML 요소에 삽입
-    document.getElementById("output").innerText = valueToSend;
-    if(valueToSend == 1){
-        mul+=1;
-        document.getElementById("mul_output").innerText = mul;
-        if (mul === 5) {
-            // 변수 값이 5일 때 특정 HTML 페이지 호출
-            window.location.href = 'end_success.html';
-        }
-    }
-    else if(valueToSend == -1){
-        err+=1;
-        document.getElementById("err_output").innerText = err;
-        if (err === 5) {
-            // 변수 값이 5일 때 특정 HTML 페이지 호출
-            window.location.href = 'end_fail.html';
-        }
-    }
-  }
-
- 
