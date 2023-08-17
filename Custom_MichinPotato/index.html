@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dressing-UP-Web</title>
+        <link rel="stylesheet" href="style.css">
+        <script type="text/javascript" src="app.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div class="main-Div"> 
+            <div class="Character" >
+                <img src="img/final_success.png" id="chara-img"style="width:100%;height:100%;object-fit:contain;">
+            </div>
+            <div class="clot-div" ondragenter="dragenter()" >
+                <img src="img/Clean.png" id="chara-clo"style="width:100%;height:100%;object-fit:contain;" >
+            </div>
+            <div class="Character-clothes">
+                <img src="img/item_1.png" id="chara-clothes"style="width:100%;height:100%;object-fit:contain;" draggable="true" ondragstart="drag()" >
+            </div>
+            <div class="Character-color">
+                <Button class="change-color-White" onclick="changeChcolor('white')"> </Button>
+                <Button class="change-color-black" onclick="changeChcolor('black')"> </Button>
+                <Button class="change-color-pink" onclick="changeChcolor('pink')"> </Button>
+                <Button class="change-color-yellow" onclick="changeChcolor('yellow')"> </Button>
+                <Button class="change-color-blue" onclick="changeChcolor('blue')"> </Button>
+                <Button class="change-color-purple" onclick="changeChcolor('purple')"> </Button>
+            </div>
+            
+            <div class="clothes-change" style="margin-top: 20px;">
+                <i class="fa fa-share fa-flip-horizontal fa-3x" id="icon_a" aria-hidden="true" onclick="downclothesBotton()"></i>
+                <i class="fa fa-share fa-3x" aria-hidden="true" onclick="upclothesBotton()"></i>
+            </div>
+        </div>
+    </body>
+</html>
